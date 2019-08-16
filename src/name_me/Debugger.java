@@ -4,29 +4,35 @@ import UI.Window;
 
 import java.io.StringWriter;
 
+/**
+ * A class that prints debug messages to the console, and logs error to the main window if displayed.
+ *
+ * @author Spud
+ */
 public class Debugger {
 
 	/**
-	 * TODO Documentation
+	 * Set this boolean to true in order for the debugger to print messages to the console.
 	 */
 	public static boolean DEBUG = false;
 
 	/**
-	 * TODO Documentation
+	 * Logs a debug message to the console with the format: <code>Example.class: Message</code>.
 	 *
-	 * @param c
-	 * @param message
+	 * @param c       The corresponding class.
+	 * @param message The message to be logged.
 	 */
 	public static void d(Class<?> c, String message) {
-		if (DEBUG) {
+		if (Debugger.DEBUG) {
 			System.out.println(String.format("%s: %s", c.getName(), message));
 		}
 	}
 
 	/**
-	 * TODO Documentation
+	 * Logs a throwable to the window (if its displayed). If there is an exception that causes the
+	 * Throwable to not be displayed, it will print a stacktrace instead.
 	 *
-	 * @param e
+	 * @param e The throwable to display.
 	 */
 	public static void e(Throwable e) {
 		try {
