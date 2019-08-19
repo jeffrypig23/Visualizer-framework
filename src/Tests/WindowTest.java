@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import name_me.Debugger;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class WindowTest extends Application {
 
 	@Test
@@ -34,24 +36,33 @@ public class WindowTest extends Application {
 		// First, create the window
 		UI.Window window = new Window(primaryStage);
 		window.stage.show();
-		//window.updateOpacity(0.5d);
+		window.updateOpacity(0.5d);
 
 		Debugger.DEBUG = false;
 
 		// Now check for arguments (tests)
 		for (String parameter : getParameters().getRaw()) {
-			if (parameter.equals("albumart_test")) { // Show the album art object
-				window.addToWindow(new AlbumArt());
-			} else if (parameter.equals("bar_test")) { // Show the bar object
-				window.addToWindow(new Bar());
-				window.addToWindow(new AlbumArt());
-			} else if (parameter.equals("bars_test")) { // Show multiple bars
-				window.addToWindow(new AlbumArt());
-				for (int i = 0; i < 63; i++) {
-					window.addToWindow(new Bar(i));
-				}
-			} else {
-				System.out.println("Unrecognized parameter: " + parameter);
+			switch (parameter) {
+				case "albumart_test":  // Show the album art object
+					window.addToWindow(new AlbumArt());
+					break;
+				case "bar_test":  // Show the bar object
+					window.addToWindow(new Bar());
+					//window.addToWindow(new AlbumArt());
+					break;
+				case "bars_test":  // Show multiple bars
+					window.addToWindow(new AlbumArt());
+					ArrayList<Bar> bars = new ArrayList<Bar>();
+					for (int i = 0; i < 63; i++) {
+						Bar bar = new Bar(i);
+						window.addToWindow(bar);
+						bars.add(bar);
+					}
+					bars.get(12).setBarHeight(1);
+					break;
+				default:
+					System.out.println("Unrecognized parameter: " + parameter);
+					break;
 			}
 		}
 	}
