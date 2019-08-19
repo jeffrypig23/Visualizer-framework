@@ -1,5 +1,6 @@
 import UI.Objects.AlbumArt;
 import UI.Objects.Bar;
+import UI.Objects.LoadingBar;
 import UI.Window;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -28,6 +29,16 @@ public class WindowTest extends Application {
 	@Test
 	void MultiBar() {
 		launch("bars_test");
+	}
+
+	@Test
+	void loadingBar() {
+		launch("loadingbar_test");
+	}
+
+	@Test
+	void loadingBarAnimation() {
+		launch("loadingbar_animation_test");
 	}
 
 	@Override
@@ -60,6 +71,14 @@ public class WindowTest extends Application {
 					}
 					bars.get(12).setBarHeight(1);
 					break;
+				case "loadingbar_test":
+					window.addToWindow(new AlbumArt());
+					window.addToWindow(new LoadingBar());
+					break;
+				case "loadingbar_animation_test":
+					LoadingBar loadingBar = new LoadingBar();
+					window.addToWindow(loadingBar);
+					loadingBar.playAnimation();
 				default:
 					System.out.println("Unrecognized parameter: " + parameter);
 					break;
