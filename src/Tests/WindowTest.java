@@ -1,6 +1,7 @@
 import UI.Objects.AlbumArt;
 import UI.Objects.Bar;
 import UI.Objects.LoadingBar;
+import UI.Objects.Monstercat;
 import UI.Window;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -41,6 +42,11 @@ public class WindowTest extends Application {
 		launch("loadingbar_animation_test");
 	}
 
+	@Test
+	void Monstercat() {
+		launch("Monstercat_test");
+	}
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
@@ -49,7 +55,7 @@ public class WindowTest extends Application {
 		window.stage.show();
 		window.updateOpacity(0.5d);
 
-		Debugger.DEBUG = false;
+		Debugger.DEBUG = true;
 
 		// Now check for arguments (tests)
 		for (String parameter : getParameters().getRaw()) {
@@ -79,6 +85,11 @@ public class WindowTest extends Application {
 					LoadingBar loadingBar = new LoadingBar();
 					window.addToWindow(loadingBar);
 					loadingBar.playAnimation();
+					break;
+				case "Monstercat_test":
+					window.addToWindow(new AlbumArt());
+					window.addToWindow(new Monstercat());
+					break;
 				default:
 					System.out.println("Unrecognized parameter: " + parameter);
 					break;
