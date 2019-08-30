@@ -86,6 +86,9 @@ public class Window {
 		// Add an error prompt to the window
 		Window.errorPrompt = new ErrorPrompt();
 		this.addToWindow(Window.errorPrompt);
+		/* TODO Change the error prompt to be a scrollable view that can house an array of errorPrompts.
+		    Error prompts will be created and then added to the view, and once the animation finished,
+		    it will be removed entirely. */
 
 		// Apply the stage
 		this.stage = stage;
