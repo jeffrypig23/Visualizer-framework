@@ -77,6 +77,6 @@ public class Monstercat extends javafx.scene.shape.SVGPath implements UI.Relativ
 
 		// Then adjust the location // FIXME
 		this.relocate(percentWidthChange * 99, percentHeightChange * 346);
-		this.setTranslateZ();
+		//this.setTranslateZ();
 	}
 }
