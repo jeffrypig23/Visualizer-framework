@@ -2,9 +2,14 @@ package UI;
 
 import UI.Objects.ColoredNode;
 import UI.Text.ErrorPrompt;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -50,7 +55,13 @@ public class Window {
 	/**
 	 * The error prompt UI element used on the window to display various runtime errors that may occur.
 	 */
+	@Deprecated
 	public static ErrorPrompt errorPrompt;
+
+	/**
+	 * TODO Documetnation
+	 */
+	public static ObservableList<ErrorPrompt> errorPrompts = FXCollections.observableList(new ArrayList<>());
 
 	/**
 	 * The scene used by this object. This is inferred from the stage that is passed in the constructor.
@@ -89,6 +100,33 @@ public class Window {
 		/* TODO Change the error prompt to be a scrollable view that can house an array of errorPrompts.
 		    Error prompts will be created and then added to the view, and once the animation finished,
 		    it will be removed entirely. */
+		VBox errorContainer = new VBox();
+		Window.errorPrompts.addListener((ListChangeListener<ErrorPrompt>) c -> {
+			// Reorganize the VBox with the most current item being on top
+			Debugger.d(this.getClass(), "Reorganizing errorContainer");
+			// First, clear the container
+			errorContainer.getChildren().removeAll();
+			Debugger.d(this.getClass(), "Cleared errorContainer");
+
+			// Then get the size of the errorPrompts list
+			int size = Window.errorPrompts.size();
+			Debugger.d(this.getClass(), "Number of promtps to display: " + size);
+
+			// Now use a for-loop to go top down from the list, adding it to the errorContainer
+			for (int index = 0; index < size; index++) {
+				ErrorPrompt prompt = Window.errorPrompts.get(size-(index+1));
+				Debugger.d(this.getClass(), "Adding error prompt with issue: "+ prompt.getText().split("\n")[0]);
+				errorContainer.getChildren().add(index, prompt);
+			}
+		});
+
+		// Create the scrollpane that will house the vbox container
+		ScrollPane errorPane = new ScrollPane(errorContainer);
+		errorPane.setLayoutX(5);
+		errorPane.setLayoutY(15);
+		errorPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, null)));
+
+		this.addToWindow(errorPane);
 
 		// Apply the stage
 		this.stage = stage;
@@ -213,4 +251,6 @@ public class Window {
 		Debugger.d(this.getClass(), "Adding key listener");
 		this.scene.setOnKeyTyped(listener);
 	}
+
+
 }

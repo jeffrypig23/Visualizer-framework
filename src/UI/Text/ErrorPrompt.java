@@ -1,5 +1,6 @@
 package UI.Text;
 
+import UI.Window;
 import name_me.Debugger;
 import javafx.animation.FadeTransition;
 import javafx.scene.Cursor;
@@ -30,10 +31,13 @@ public class ErrorPrompt extends javafx.scene.text.Text {
 		this.setY(15);
 		this.setOpacity(0d);
 
-		// Change the cursor back to normal when finished
 		this.animation.setOnFinished(event -> {
+			// Change the cursor back to normal when finished
 			this.setCursor(Cursor.DEFAULT);
 			this.setOnMouseClicked(null);
+
+			// Remove this from the errorPrompt list
+			Window.errorPrompts.remove(this);
 		});
 
 	}
@@ -67,6 +71,9 @@ public class ErrorPrompt extends javafx.scene.text.Text {
 		Debugger.d(this.getClass(), "Logging error: \n" + stacktrace);
 		this.setText(stacktrace + "\n");
 		this.playAnimation();
+
+		// Add this object to the errorPrompt list
+		Window.errorPrompts.add(this);
 	}
 
 }
