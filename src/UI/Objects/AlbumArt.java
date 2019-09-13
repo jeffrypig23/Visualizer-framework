@@ -1,8 +1,8 @@
 package UI.Objects;
 
 import javafx.scene.paint.Color;
-import name_me.Debugger;
-import name_me.GenreColors;
+import Utility.Debugger;
+import Utility.GenreColors;
 
 /**
  * Corresponds to the colored square that is behind the cat.
@@ -24,7 +24,7 @@ public class AlbumArt extends javafx.scene.shape.Rectangle implements ColoredNod
 
 	@Override
 	public void setColor(Color color) {
-		name_me.Debugger.d(this.getClass(), "Changing album art color to " + color.toString());
+		Utility.Debugger.d(this.getClass(), "Changing album art color to " + color.toString());
 		this.setFill(color);
 	}
 

@@ -8,8 +8,8 @@ import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import name_me.Debugger;
-import name_me.GenreColors;
+import Utility.Debugger;
+import Utility.GenreColors;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

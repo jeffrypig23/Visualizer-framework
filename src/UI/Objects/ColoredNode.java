@@ -19,6 +19,6 @@ public interface ColoredNode {
 	 *
 	 * @param genreColor The genre color to be applied to the node.
 	 */
-	public void setColor(name_me.GenreColors genreColor);
+	public void setColor(Utility.GenreColors genreColor);
 
 }

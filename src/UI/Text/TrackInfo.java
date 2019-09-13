@@ -1,13 +1,11 @@
 package UI.Text;
 
-import Audio.Metadata;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import name_me.Debugger;
+import Utility.Debugger;
 
 /**
  * Track info includes the specific metadata, such as the track title, track artist, and track cover art.
@@ -15,11 +13,6 @@ import name_me.Debugger;
  * @author Spud
  */
 public class TrackInfo {
-
-	/**
-	 * Create a metadata object to get the title, artist, and cover-art of the track
-	 */
-	private Metadata trackData = new Metadata();
 
 	/**
 	 * Creates the title text for the given track.
@@ -88,14 +81,7 @@ public class TrackInfo {
 	 * this should be an actual image.
 	 */
 	public class CoverArt {
-
-		/**
-		 * The cover-art of the track.
-		 */
-		ImageView art = new ImageView(trackData.getImage());
-
-		// TODO Finish this.
-
+		// TODO
 	}
 
 	/**

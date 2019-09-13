@@ -2,8 +2,8 @@ package UI.Objects;
 
 import UI.RelativeNode;
 import javafx.scene.paint.Color;
-import name_me.Debugger;
-import name_me.GenreColors;
+import Utility.Debugger;
+import Utility.GenreColors;
 
 /**
  * Creates a bar (or bars of an index is provided) that can grow in height by a certain percentage.

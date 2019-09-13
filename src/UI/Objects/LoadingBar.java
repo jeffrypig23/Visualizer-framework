@@ -1,8 +1,8 @@
 package UI.Objects;
 
 import UI.RelativeNode;
-import name_me.Debugger;
-import name_me.GenreColors;
+import Utility.Debugger;
+import Utility.GenreColors;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;

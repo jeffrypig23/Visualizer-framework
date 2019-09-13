@@ -1,7 +1,7 @@
 package UI.Text;
 
 import javafx.animation.FadeTransition;
-import name_me.Debugger;
+import Utility.Debugger;
 
 /**
  * Creates the pause text node for the user when a track is played/resumed. Once it is shown, the text then fades out.

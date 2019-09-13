@@ -12,8 +12,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import name_me.Debugger;
-import name_me.GenreColors;
+import Utility.Debugger;
+import Utility.GenreColors;
 
 import java.io.File;
 import java.io.FileInputStream;

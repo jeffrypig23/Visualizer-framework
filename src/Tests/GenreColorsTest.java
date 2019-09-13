@@ -1,5 +1,5 @@
 import javafx.scene.paint.Color;
-import name_me.GenreColors;
+import Utility.GenreColors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

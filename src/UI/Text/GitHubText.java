@@ -48,7 +48,7 @@ public class GitHubText extends javafx.scene.text.Text implements UI.RelativeNod
 	@Override
 	public void updatePosition(double width, double height) {
 		double x = width - (10 + this.getLayoutBounds().getWidth()), y = height - (20 + this.getLayoutBounds().getHeight());
-		name_me.Debugger.d(this.getClass(), String.format("Updating position to: %f, %f", x, y));
+		Utility.Debugger.d(this.getClass(), String.format("Updating position to: %f, %f", x, y));
 		this.setX(x);
 		this.setY(y);
 	}

@@ -1,7 +1,7 @@
 package UI.Text;
 
 import Audio.AudioPlayer;
-import name_me.Debugger;
+import Utility.Debugger;
 import javafx.animation.FadeTransition;
 
 /**

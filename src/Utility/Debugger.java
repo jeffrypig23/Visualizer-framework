@@ -1,4 +1,4 @@
-package name_me;
+package Utility;
 
 import UI.Window;
 

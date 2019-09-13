@@ -1,7 +1,7 @@
 package UI.Objects;
 
 import javafx.scene.paint.Color;
-import name_me.Debugger;
+import Utility.Debugger;
 
 /**
  * Creates the Monstercat cat shape.
