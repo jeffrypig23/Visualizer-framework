@@ -2,6 +2,7 @@ import UI.Objects.AlbumArt;
 import UI.Objects.Bar;
 import UI.Objects.LoadingBar;
 import UI.Objects.Monstercat;
+import UI.Text.GitHubText;
 import UI.Window;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
@@ -49,6 +50,11 @@ public class WindowTest extends Application {
 	@Test
 	void Monstercat() {
 		launch("Monstercat_test");
+	}
+
+	@Test
+	void GitHubText() {
+		launch("githubtext_test");
 	}
 
 	@Override
@@ -121,6 +127,9 @@ public class WindowTest extends Application {
 						case "Monstercat_test":
 							window.addToWindow(new AlbumArt());
 							window.addToWindow(new Monstercat());
+							break;
+						case "githubtext_test":
+							window.addToWindow(new GitHubText());
 							break;
 						default:
 							System.out.println("Unrecognized parameter: " + parameter);

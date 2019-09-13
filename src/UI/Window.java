@@ -3,13 +3,10 @@ package UI;
 import UI.Objects.ColoredNode;
 import UI.Text.ErrorPrompt;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -59,7 +56,7 @@ public class Window {
 	public static ErrorPrompt errorPrompt;
 
 	/**
-	 * TODO Documetnation
+	 * TODO Documentation
 	 */
 	public static ObservableList<ErrorPrompt> errorPrompts = FXCollections.observableList(new ArrayList<>());
 
@@ -99,7 +96,7 @@ public class Window {
 		this.addToWindow(Window.errorPrompt);
 		/* TODO Change the error prompt to be a scrollable view that can house an array of errorPrompts.
 		    Error prompts will be created and then added to the view, and once the animation finished,
-		    it will be removed entirely. */
+		    it will be removed entirely.
 		VBox errorContainer = new VBox();
 		Window.errorPrompts.addListener((ListChangeListener<ErrorPrompt>) c -> {
 			// Reorganize the VBox with the most current item being on top
@@ -119,14 +116,26 @@ public class Window {
 				errorContainer.getChildren().add(index, prompt);
 			}
 		});
+		errorContainer.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+		//errorContainer.setFillWidth(true);
 
-		// Create the scrollpane that will house the vbox container
+		// Add a test text message
+		Text testText = new Text("Test");
+		testText.setFill(Color.RED);
+		errorContainer.getChildren().add(testText);
+
+		// Create the scrollpane that will house the vbox container -- FIXME
 		ScrollPane errorPane = new ScrollPane(errorContainer);
 		errorPane.setLayoutX(5);
 		errorPane.setLayoutY(15);
+		errorPane.setMinSize(80, 45);
+		errorPane.setPrefSize(640, 360);
+		errorPane.setMaxSize(640, 360);
+		errorPane.setFitToWidth(true);
 		errorPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, null)));
 
 		this.addToWindow(errorPane);
+		 */
 
 		// Apply the stage
 		this.stage = stage;
