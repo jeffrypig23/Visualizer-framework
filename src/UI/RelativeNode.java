@@ -7,7 +7,7 @@ package UI;
  *
  * @author Spud
  */
-public interface RelativeNode {
+public interface RelativeNode { // TODO Look into CSS for upadting position and scale
 
 	/**
 	 * Sets the relative position of the node in the window based off of the provided width and height.

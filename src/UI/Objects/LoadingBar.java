@@ -35,6 +35,7 @@ public class LoadingBar extends javafx.scene.shape.Rectangle implements ColoredN
 	 * <p>
 	 * It should be noted that once this has finished, the bar will not return to its origin.
 	 */
+	@Deprecated
 	public void playAnimation() {
 
 		// Creating Translate Transition

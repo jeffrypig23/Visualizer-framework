@@ -49,6 +49,8 @@ public class Window {
 	 */
 	private List<ColoredNode> coloredNodes = new ArrayList<>();
 
+	public List<Node> nodes = new ArrayList<>();
+
 	/**
 	 * The error prompt UI element used on the window to display various runtime errors that may occur.
 	 */
@@ -162,7 +164,7 @@ public class Window {
 		this.stage.heightProperty().addListener(stageSizeListener);
 
 		// Set it so when the a close is requested, it just shuts down.
-		this.stage.setOnCloseRequest((event -> System.exit(0)));
+		this.stage.setOnCloseRequest((event -> javafx.application.Platform.exit()));
 
 		// If in debug mode, replace the background with the gray and white checkerboard pattern for sizing checks
 		if (Debugger.DEBUG) {
