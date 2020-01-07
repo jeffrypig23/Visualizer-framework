@@ -1,6 +1,6 @@
 package Utility;
 
-import UI.Window;
+import UI.Window.Window;
 
 import java.io.StringWriter;
 

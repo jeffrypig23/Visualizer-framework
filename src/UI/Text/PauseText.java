@@ -23,6 +23,7 @@ public class PauseText extends javafx.scene.text.Text implements UI.RelativeNode
 		this.updateOpacity(0);
 	}
 
+	/*
 	@Override
 	public void updatePosition(double width, double height) {
 		double x = 10, y = height - this.getLayoutBounds().getHeight();
@@ -30,6 +31,7 @@ public class PauseText extends javafx.scene.text.Text implements UI.RelativeNode
 		this.setX(x);
 		this.setY(y);
 	}
+	 */
 
 	/**
 	 * Plays the fade animation of the text.
@@ -51,4 +53,13 @@ public class PauseText extends javafx.scene.text.Text implements UI.RelativeNode
 		this.setOpacity(opacity);
 	}
 
+	@Override
+	public void updateWidth(double oldWidth, double newWidth) {
+		// TODO
+	}
+
+	@Override
+	public void updateHeight(double oldHeight, double newHeight) {
+		// TODO
+	}
 }

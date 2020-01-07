@@ -1,6 +1,6 @@
 package UI.Text;
 
-import UI.Window;
+import UI.Window.Window;
 import Utility.Debugger;
 import javafx.animation.FadeTransition;
 import javafx.scene.Cursor;

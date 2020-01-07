@@ -3,7 +3,7 @@ import UI.Objects.Bar;
 import UI.Objects.LoadingBar;
 import UI.Objects.Monstercat;
 import UI.Text.GitHubText;
-import UI.Window;
+import UI.Window.Window;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -61,10 +61,10 @@ public class WindowTest extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		// To enable debug outputs, set this to true
-		Debugger.DEBUG = false;
+		Debugger.DEBUG = true;
 
 		// First, create the window
-		final UI.Window window = new Window(primaryStage);
+		final Window window = new Window(primaryStage);
 		//window.updateOpacity(0.5d);
 
 		// Add a listener for on shown to then run tests based on parameters

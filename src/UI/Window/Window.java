@@ -1,6 +1,7 @@
-package UI;
+package UI.Window;
 
 import UI.Objects.ColoredNode;
+import UI.RelativeNode;
 import UI.Text.ErrorPrompt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import Utility.GenreColors;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,9 @@ public class Window {
 	 */
 	private List<ColoredNode> coloredNodes = new ArrayList<>();
 
+	/**
+	 * TODO Documentation
+	 */
 	public List<Node> nodes = new ArrayList<>();
 
 	/**
@@ -147,21 +152,11 @@ public class Window {
 		this.setStageBackground(Color.BLACK);
 
 		// Setup a listener for when the window changes dimensions
-		javafx.beans.value.ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-
-			double stageWidth = this.stage.getWidth(), stageHeight = this.stage.getHeight();
-			Debugger.d(this.getClass(), "New stage height: " + stageHeight);
-			Debugger.d(this.getClass(), "New stage width: " + stageWidth);
-
-			// Setup all the relative positioning
-			for (RelativeNode listener : this.relativeNodes) {
-				listener.updatePosition(stageWidth, stageHeight);
-			}
-		};
+		javafx.beans.value.ChangeListener<Number> dimensionChangeListener = new DimensionChangeListener(this.relativeNodes.toArray(new RelativeNode[0]));
 
 		// TODO Look into operating this listener on a new thread for improved performance?
-		this.stage.widthProperty().addListener(stageSizeListener);
-		this.stage.heightProperty().addListener(stageSizeListener);
+		this.stage.widthProperty().addListener(dimensionChangeListener);
+		this.stage.heightProperty().addListener(dimensionChangeListener);
 
 		// Set it so when the a close is requested, it just shuts down.
 		this.stage.setOnCloseRequest((event -> javafx.application.Platform.exit()));
@@ -170,7 +165,8 @@ public class Window {
 		if (Debugger.DEBUG) {
 			try {
 				// Get the background image file
-				File debugImageFile = new File(this.getClass().getResource("DebugBackgroundImage.png").toURI());
+				URI ImageURI = this.getClass().getResource("DebugBackgroundImage.png").toURI();
+				File debugImageFile = new File(ImageURI);
 				Debugger.d(this.getClass(), "Debug Image File: " + debugImageFile.getPath());
 
 				// Load the image

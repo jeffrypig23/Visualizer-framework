@@ -66,6 +66,17 @@ public class Monstercat extends javafx.scene.shape.SVGPath implements UI.Relativ
 	}
 
 	@Override
+	public void updateWidth(double oldWidth, double newWidth) {
+		// TODO
+	}
+
+	@Override
+	public void updateHeight(double oldHeight, double newHeight) {
+		// TODO
+	}
+
+	/*
+	@Override
 	public void updatePosition(double width, double height) {
 		// This should be similar to AlbumArt.java
 		// First, adjust the scale
@@ -79,4 +90,5 @@ public class Monstercat extends javafx.scene.shape.SVGPath implements UI.Relativ
 		this.relocate(percentWidthChange * 99, percentHeightChange * 346);
 		//this.setTranslateZ();
 	}
+	 */
 }

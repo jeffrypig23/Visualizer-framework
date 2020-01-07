@@ -7,14 +7,22 @@ package UI;
  *
  * @author Spud
  */
-public interface RelativeNode { // TODO Look into CSS for upadting position and scale
+public interface RelativeNode { // TODO Look into CSS for updating position and scale
 
 	/**
-	 * Sets the relative position of the node in the window based off of the provided width and height.
+	 * TODO Documentation
 	 *
-	 * @param width  The current window width.
-	 * @param height The current window height.
+	 * @param oldWidth
+	 * @param newWidth
 	 */
-	public void updatePosition(double width, double height);
+	public void updateWidth(double oldWidth, double newWidth);
+
+	/**
+	 * TODO Documentation
+	 *
+	 * @param oldHeight
+	 * @param newHeight
+	 */
+	public void updateHeight(double oldHeight, double newHeight);
 
 }

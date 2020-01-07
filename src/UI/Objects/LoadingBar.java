@@ -133,6 +133,17 @@ public class LoadingBar extends javafx.scene.shape.Rectangle implements ColoredN
 	}
 
 	@Override
+	public void updateWidth(double oldWidth, double newWidth) {
+		// TODO
+	}
+
+	@Override
+	public void updateHeight(double oldHeight, double newHeight) {
+		// TODO
+	}
+
+	/*
+	@Override
 	public void updatePosition(double width, double height) {
 		// Get the percentage change
 		double percentWidthChange = width / 1280, percentHeightChange = height / 720;
@@ -152,4 +163,5 @@ public class LoadingBar extends javafx.scene.shape.Rectangle implements ColoredN
 		this.setX(differenceWidth);
 		this.setY(differenceHeight);
 	}
+	 */
 }

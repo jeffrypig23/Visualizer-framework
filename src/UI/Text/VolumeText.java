@@ -29,6 +29,7 @@ public class VolumeText extends javafx.scene.text.Text implements UI.RelativeNod
 		this.updateOpacity(0);
 	}
 
+	/*
 	@Override
 	public void updatePosition(double width, double height) {
 		double x = width - (this.getLayoutBounds().getWidth() + (width / 4.5)), y = this.getLayoutBounds().getHeight();
@@ -36,6 +37,7 @@ public class VolumeText extends javafx.scene.text.Text implements UI.RelativeNod
 		this.setX(x);
 		this.setY(y);
 	}
+	 */
 
 	/**
 	 * Adjusts the volume by the increment amount.
@@ -89,4 +91,13 @@ public class VolumeText extends javafx.scene.text.Text implements UI.RelativeNod
 		this.setOpacity(opacity);
 	}
 
+	@Override
+	public void updateWidth(double oldWidth, double newWidth) {
+		// TODO
+	}
+
+	@Override
+	public void updateHeight(double oldHeight, double newHeight) {
+		// TODO
+	}
 }
