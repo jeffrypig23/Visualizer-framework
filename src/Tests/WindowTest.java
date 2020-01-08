@@ -60,9 +60,6 @@ public class WindowTest extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		// To enable debug outputs, set this to true
-		Debugger.DEBUG = true;
-
 		// First, create the window
 		final Window window = new Window(primaryStage);
 		//window.updateOpacity(0.5d);

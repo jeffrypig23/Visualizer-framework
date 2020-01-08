@@ -1,5 +1,6 @@
 package Utility;
 
+import UI.Text.ConsoleText;
 import UI.Window.Window;
 
 import java.io.StringWriter;
@@ -24,7 +25,13 @@ public class Debugger {
 	 */
 	public static void d(Class<?> c, String message) {
 		if (Debugger.DEBUG) {
-			System.out.println(String.format("%s: %s", c.getName(), message));
+			String string = String.format("%s: %s", c.getName(), message);
+			System.out.println(string);
+			if (Window.console != null) {
+				Window.console.addToConsole(new ConsoleText(string, false), false);
+			} else {
+				System.out.println("Console window not setup!");
+			}
 		}
 	}
 
@@ -36,10 +43,12 @@ public class Debugger {
 	 */
 	public static void e(Throwable e) {
 		try {
-			if (Window.errorPrompt != null) {
+			if (Window.console != null) {
 				StringWriter sw = new StringWriter();
 				e.printStackTrace(new java.io.PrintWriter(sw));
-				Window.errorPrompt.logError(sw.toString());
+				String string = sw.toString();
+				Window.console.addToConsole(new ConsoleText(string, true), true);
+				System.out.println(string);
 			}
 		} catch (Exception cannotDisplay) {
 			cannotDisplay.printStackTrace();

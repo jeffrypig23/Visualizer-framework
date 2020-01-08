@@ -2,23 +2,16 @@ package UI.Window;
 
 import UI.Objects.ColoredNode;
 import UI.RelativeNode;
-import UI.Text.ErrorPrompt;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
+import UI.Text.ConsolePane;
+import Utility.Debugger;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import Utility.Debugger;
-import Utility.GenreColors;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +22,7 @@ import java.util.List;
  *
  * @author Spud
  */
+@SuppressWarnings("unused")
 public class Window {
 
 	/**
@@ -57,15 +51,9 @@ public class Window {
 	public List<Node> nodes = new ArrayList<>();
 
 	/**
-	 * The error prompt UI element used on the window to display various runtime errors that may occur.
-	 */
-	@Deprecated
-	public static ErrorPrompt errorPrompt;
-
-	/**
 	 * TODO Documentation
 	 */
-	public static ObservableList<ErrorPrompt> errorPrompts = FXCollections.observableList(new ArrayList<>());
+	public static ConsolePane console;
 
 	/**
 	 * The scene used by this object. This is inferred from the stage that is passed in the constructor.
@@ -99,50 +87,8 @@ public class Window {
 		stage.setMinHeight(90);
 
 		// Add an error prompt to the window
-		Window.errorPrompt = new ErrorPrompt();
-		this.addToWindow(Window.errorPrompt);
-		/* TODO Change the error prompt to be a scrollable view that can house an array of errorPrompts.
-		    Error prompts will be created and then added to the view, and once the animation finished,
-		    it will be removed entirely.
-		VBox errorContainer = new VBox();
-		Window.errorPrompts.addListener((ListChangeListener<ErrorPrompt>) c -> {
-			// Reorganize the VBox with the most current item being on top
-			Debugger.d(this.getClass(), "Reorganizing errorContainer");
-			// First, clear the container
-			errorContainer.getChildren().removeAll();
-			Debugger.d(this.getClass(), "Cleared errorContainer");
-
-			// Then get the size of the errorPrompts list
-			int size = Window.errorPrompts.size();
-			Debugger.d(this.getClass(), "Number of promtps to display: " + size);
-
-			// Now use a for-loop to go top down from the list, adding it to the errorContainer
-			for (int index = 0; index < size; index++) {
-				ErrorPrompt prompt = Window.errorPrompts.get(size-(index+1));
-				Debugger.d(this.getClass(), "Adding error prompt with issue: "+ prompt.getText().split("\n")[0]);
-				errorContainer.getChildren().add(index, prompt);
-			}
-		});
-		errorContainer.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-		//errorContainer.setFillWidth(true);
-
-		// Add a test text message
-		Text testText = new Text("Test");
-		testText.setFill(Color.RED);
-		errorContainer.getChildren().add(testText);
-
-		// Create the scrollpane that will house the vbox container -- FIXME
-		ScrollPane errorPane = new ScrollPane(errorContainer);
-		errorPane.setLayoutX(5);
-		errorPane.setLayoutY(15);
-		errorPane.setMinSize(80, 45);
-		errorPane.setPrefSize(640, 360);
-		errorPane.setMaxSize(640, 360);
-		errorPane.setFitToWidth(true);
-		errorPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, null)));
-
-		this.addToWindow(errorPane);
-		 */
+		Window.console = new ConsolePane();
+		this.addToWindow(Window.console);
 
 		// Apply the stage
 		this.stage = stage;
@@ -165,12 +111,12 @@ public class Window {
 		if (Debugger.DEBUG) {
 			try {
 				// Get the background image file
-				URI ImageURI = this.getClass().getResource("DebugBackgroundImage.png").toURI();
+				java.net.URI ImageURI = this.getClass().getResource("DebugBackgroundImage.png").toURI();
 				File debugImageFile = new File(ImageURI);
 				Debugger.d(this.getClass(), "Debug Image File: " + debugImageFile.getPath());
 
 				// Load the image
-				Image debug_image = new Image(new FileInputStream(debugImageFile));
+				Image debug_image = new Image(new java.io.FileInputStream(debugImageFile));
 				BackgroundSize size = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO,
 						false, false, true, false);
 				this.WindowRoot.setBackground(new Background(new BackgroundImage(debug_image, BackgroundRepeat.NO_REPEAT,
@@ -208,7 +154,7 @@ public class Window {
 	 * @param node The node to apply the visibility changes to
 	 * @param hide Whether or not to hide the node.
 	 */
-	public void hideElement(javafx.scene.Node node, boolean hide) {
+	public void hideElement(Node node, boolean hide) {
 		Debugger.d(this.getClass(), String.format("Hide %s? %s", node.toString(), hide));
 		node.setVisible(!hide);
 	}
@@ -221,7 +167,7 @@ public class Window {
 	 * @param element The UI element to be added to the window.
 	 */
 	public void addToWindow(Node element) {
-		Debugger.d(this.getClass(), "Adding new element to window");
+		Debugger.d(this.getClass(), "Adding new element to window: " + element.getClass());
 		this.WindowRoot.getChildren().add(element);
 
 		// If the element is a relative node, add it to the list for event handling
@@ -242,7 +188,7 @@ public class Window {
 	 *
 	 * @param genre The genre to set all the ColoredNodes to.
 	 */
-	public void setGenre(GenreColors genre) {
+	public void setGenre(Utility.GenreColors genre) {
 		Debugger.d(this.getClass(), "Updating genre colors to: " + genre.name());
 		for (ColoredNode node : this.coloredNodes) {
 			node.setColor(genre);
@@ -254,10 +200,8 @@ public class Window {
 	 *
 	 * @param listener The listener. This must be a EventHandler interface.
 	 */
-	public void addKeyListener(EventHandler<KeyEvent> listener) {
+	public void addKeyListener(javafx.event.EventHandler<javafx.scene.input.KeyEvent> listener) {
 		Debugger.d(this.getClass(), "Adding key listener");
 		this.scene.setOnKeyTyped(listener);
 	}
-
-
 }
